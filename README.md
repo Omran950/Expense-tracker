@@ -26,16 +26,18 @@ The Expense Tracker provides a user-friendly interface for:
 ---
 ## 📋 Installation Instructions  
 ```bash
-1. **Clone the Repository:**  
+**Clone the Repository:**  
 git clone https://github.com/Omran950/Expense-tracker
 cd expense-tracker
 
-2. **Clone the Repository:**  
+**Clone the Repository:**  
 npm install
 
-2. **Run the App:**
+**Run the App:**
 npm run dev
 Open the app at http://localhost:3000.
+
+================================================================================================================================================================================
 
 📚 Features
 
@@ -58,6 +60,8 @@ Remove individual expense records from the list.
 
 💰 Dynamic Total Expense
 The total expense amount is dynamically calculated based on the current search or filter results.
+
+================================================================================================================================================================================
 
 🛠 Project Structure
 src
