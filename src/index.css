@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@layer components {
+  .table-head {
+    @apply cursor-pointer px-6 py-3 text-left text-sm font-semibold tracking-wide;
+  }
+
+  .form-inputs {
+    @apply w-full rounded-md border p-3 text-gray-700 focus:border-amber-400 focus:ring-amber-400;
+  }
+}
+
+::selection {
+  background: rgb(248, 219, 175);
+  color: white;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes vibration {
+  0%,
+  100% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+    -webkit-transform: translateX(-2px);
+    -moz-transform: translateX(-2px);
+    -ms-transform: translateX(-2px);
+    -o-transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+    -webkit-transform: translateX(2px);
+    -moz-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+    -webkit-transform: translateX(-2px);
+    -moz-transform: translateX(-2px);
+    -ms-transform: translateX(-2px);
+    -o-transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+    -webkit-transform: translateX(2px);
+    -moz-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+  }
+}
+
+.animate-vibration:hover {
+  animation: vibration 0.5s ease-out infinite;
+  -webkit-animation: vibration 0.5s ease-out infinite;
+}
+
+.vibration:hover .animate-vibration-2 {
+  animation: vibration 0.5s ease-out infinite;
+  -webkit-animation: vibration 0.5s ease-out infinite;
+}
