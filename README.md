@@ -26,7 +26,8 @@ The Expense Tracker provides a user-friendly interface for:
 ---
 
 
-📚 Features
+## 📚 Features
+
 ➕ Add Expense
 Enter expense details (name, amount, category) through a modal form.
 Pushes data objects to an array stored in local storage.
@@ -42,7 +43,7 @@ Remove individual expense records from the list.
 💰 Dynamic Total Expense
 The total expense amount is dynamically calculated based on the current search or filter results.
 
- ##Project Structure
+ ## 🛠 Project Structure
 src
 ├── components
 │   ├── ExpenseForm.jsx
@@ -55,9 +56,6 @@ src
 
 
 ## 📋 Installation Instructions  
-
-1. **Clone the Repository:**  
-```bash
 git clone https://github.com/Omran950/Expense-tracker
 cd expense-tracker
 npm install
