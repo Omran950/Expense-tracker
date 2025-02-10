@@ -42,7 +42,7 @@ Remove individual expense records from the list.
 💰 Dynamic Total Expense
 The total expense amount is dynamically calculated based on the current search or filter results.
 
-🔧 Project Structure
+ ##Project Structure
 src
 ├── components
 │   ├── ExpenseForm.jsx
