@@ -25,8 +25,8 @@ The Expense Tracker provides a user-friendly interface for:
 
 ---
 ## 📋 Installation Instructions  
-1. **Clone the Repository:**  
 ```bash
+1. **Clone the Repository:**  
 git clone https://github.com/Omran950/Expense-tracker
 cd expense-tracker
 
@@ -38,18 +38,24 @@ npm run dev
 Open the app at http://localhost:3000.
 
 📚 Features
+
 ➕ Add Expense
 Enter expense details (name, amount, category) through a modal form.
 Pushes data objects to an array stored in local storage.
+
 📋 Table Display
 Displays all expense entries from the data array.
+
 🔍 Search & Filter
 Search: Quickly find expenses by name.
 Filter: View expenses by category.
+
 🔄 Sorting
 Sort expenses by name, amount, or category.
+
 🗑 Delete Expense
 Remove individual expense records from the list.
+
 💰 Dynamic Total Expense
 The total expense amount is dynamically calculated based on the current search or filter results.
 
