@@ -71,5 +71,7 @@ src
 ├── Redux
 │   └── store.js
 │   └── expense.js
+├── utils
+│   └── expenseHelpers.js
 ├── App.jsx
 └── index.css
