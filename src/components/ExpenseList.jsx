@@ -6,20 +6,18 @@ import { TbMoneybag } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
 import { AiOutlineFieldNumber } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteExpense,
-  filterByCategory,
-  searchByName,
-  sortExpenses,
-} from "../Redux/expense";
+import { filterByCategory, searchByName, sortExpenses } from "../Redux/expense";
+import { useState } from "react";
+import DeleteAlertModal from "./DeleteAlertModal";
 
 export default function ExpenseTable({ closeModal }) {
+  const [deleteAlertModal, setDeleteAlertModal] = useState(false);
+  const [deleteExpenseID, setDeleteExpenseID] = useState(null);
   const dispatch = useDispatch();
 
   //get required data from the redux store
-  const { data, sortField, sortDirection, filterData } = useSelector(
-    (store) => store.expense,
-  );
+  const { data, sortField, sortDirection, filterData, searchTerm } =
+    useSelector((store) => store.expense);
 
   //count the total expense amount
   const totalExpense = filterData.reduce(
@@ -67,6 +65,7 @@ export default function ExpenseTable({ closeModal }) {
             onChange={(e) => {
               dispatch(searchByName(e.target.value));
             }}
+            value={searchTerm}
           />
           <div className="vibration flex items-center gap-x-1 rounded-xl bg-amber-500 p-2 text-white hover:bg-amber-600">
             <IoFilter size={24} className="animate-vibration-2" />
@@ -74,6 +73,7 @@ export default function ExpenseTable({ closeModal }) {
               disabled={data.length <= 0}
               onChange={(e) => {
                 dispatch(filterByCategory(e.target.value));
+                dispatch(searchByName(""));
                 sessionStorage.setItem("filter", e.target.value);
               }}
               className={`border-none bg-transparent outline-none ${data.length > 0 && "cursor-pointer"}`}
@@ -167,10 +167,8 @@ export default function ExpenseTable({ closeModal }) {
                     <button
                       className="vibration cursor-pointer rounded-md bg-amber-500 px-4 py-2 font-semibold text-white hover:bg-amber-600"
                       onClick={() => {
-                        dispatch(deleteExpense(item.id));
-                        dispatch(
-                          filterByCategory(sessionStorage.getItem("filter")),
-                        );
+                        setDeleteAlertModal(true);
+                        setDeleteExpenseID(item.id);
                       }}
                     >
                       <FaTrash className="animate-vibration-2" />
@@ -191,6 +189,12 @@ export default function ExpenseTable({ closeModal }) {
           </tbody>
         </table>
       </div>
+      {deleteAlertModal && (
+        <DeleteAlertModal
+          closeModal={setDeleteAlertModal}
+          id={deleteExpenseID}
+        />
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { applyFilters, sortItems } from "../utils/expenseHelpers";
 
 const expense = createSlice({
   name: "expense",
@@ -15,11 +16,16 @@ const expense = createSlice({
     currentCategory: sessionStorage.getItem("filter")
       ? sessionStorage.getItem("filter")
       : "all",
+    searchTerm: "",
   },
   reducers: {
     addExpense: (state, action) => {
       state.data.push(action.payload);
-      state.filterData = state.data;
+      state.filterData = applyFilters(
+        state.data,
+        state.currentCategory,
+        state.searchTerm,
+      );
       localStorage.setItem("expenses", JSON.stringify(state.data));
       toast.success("Expense added successfully!", {
         position: "bottom-right",
@@ -33,8 +39,12 @@ const expense = createSlice({
     },
     deleteExpense: (state, action) => {
       state.data = state.data.filter((item) => item.id != action.payload);
-      state.filterData = state.data;
       localStorage.setItem("expenses", JSON.stringify(state.data));
+      state.filterData = applyFilters(
+        state.data,
+        state.currentCategory,
+        state.searchTerm,
+      );
       toast.success("Expense removed successfully!", {
         position: "bottom-right",
         autoClose: 3000,
@@ -46,16 +56,34 @@ const expense = createSlice({
       });
     },
     filterByCategory: (state, action) => {
-      action.payload == "all"
-        ? (state.filterData = state.data)
-        : (state.filterData = state.data.filter(
-            (item) => item.category == action.payload,
-          ));
+      state.currentCategory = action.payload;
+      state.filterData = applyFilters(
+        state.data,
+        action.payload,
+        state.searchTerm,
+      );
+      if (state.sortField) {
+        state.filterData = sortItems(
+          state.filterData,
+          state.sortField,
+          state.sortDirection,
+        );
+      }
     },
     searchByName: (state, action) => {
-      state.filterData = state.data.filter((item) =>
-        item.name.toLowerCase().includes(action.payload.toLowerCase()),
+      state.searchTerm = action.payload;
+      state.filterData = applyFilters(
+        state.data,
+        state.currentCategory,
+        action.payload,
       );
+      if (state.sortField) {
+        state.filterData = sortItems(
+          state.filterData,
+          state.sortField,
+          state.sortDirection,
+        );
+      }
     },
     sortExpenses: (state, action) => {
       if (state.sortField === action.payload) {
@@ -64,17 +92,11 @@ const expense = createSlice({
         state.sortField = action.payload;
         state.sortDirection = "asc";
       }
-      state.data.sort((a, b) => {
-        let comparison = 0;
-        if (action.payload === "amount") {
-          comparison = Number(a[action.payload]) - Number(b[action.payload]);
-        } else {
-          comparison = a[action.payload].localeCompare(b[action.payload]);
-        }
-        return state.sortDirection === "asc" ? comparison : -comparison;
-      });
-      state.filterData = state.data;
-      localStorage.setItem("expenses", JSON.stringify(state.data));
+      state.filterData = sortItems(
+        state.filterData,
+        action.payload,
+        state.sortDirection,
+      );
     },
   },
 });
