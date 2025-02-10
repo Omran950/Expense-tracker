@@ -71,6 +71,7 @@ export default function ExpenseTable({ closeModal }) {
           <div className="vibration flex items-center gap-x-1 rounded-xl bg-amber-500 p-2 text-white hover:bg-amber-600">
             <IoFilter size={24} className="animate-vibration-2" />
             <select
+              disabled={data.length <= 0}
               onChange={(e) => {
                 dispatch(filterByCategory(e.target.value));
                 sessionStorage.setItem("filter", e.target.value);
