@@ -76,7 +76,7 @@ export default function ExpenseTable({ closeModal }) {
                 dispatch(filterByCategory(e.target.value));
                 sessionStorage.setItem("filter", e.target.value);
               }}
-              className="cursor-pointer border-none bg-transparent outline-none"
+              className={`border-none bg-transparent outline-none ${data.length > 0 && "cursor-pointer"}`}
             >
               {categories.map((category) => (
                 <option
