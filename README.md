@@ -24,7 +24,14 @@ The Expense Tracker provides a user-friendly interface for:
 - **Utilities:** UUID, React Icons, React Toastify  
 
 ---
-
+## 📋 Installation Instructions  
+1. **Clone the Repository:**  
+```bash
+git clone https://github.com/Omran950/Expense-tracker
+cd expense-tracker
+npm install
+npm run dev
+Open the app at http://localhost:3000.
 
 ## 📚 Features
 
@@ -55,13 +62,4 @@ src
 │   └── expense.js
 ├── App.jsx
 └── index.css
----
-
-## 📋 Installation Instructions  
-git clone https://github.com/Omran950/Expense-tracker
-cd expense-tracker
-npm install
-npm run dev
-Open the app at http://localhost:3000.
-
 ---
