@@ -34,7 +34,7 @@ export default function ExpenseForm({ closeModal }) {
   function onSubmit(values, { resetForm }) {
     const expense = { id: uuidv4(), ...values };
     dispatch(addExpense(expense));
-    dispatch(filterByCategory(sessionStorage.getItem("filter")));
+    dispatch(filterByCategory(sessionStorage.getItem("filter") || "all"));
     resetForm();
     closeModal();
   }
